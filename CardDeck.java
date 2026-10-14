@@ -20,29 +20,29 @@ public class CardDeck {
         cards[size] = card;//places the new card after the last one before it
         size++; //increasing the deck size by 1 so that a new card can be added
     }
-    public synchronized Card drawingCard() {
+    public synchronized Card drawingCard() {//created the method for drawing cards from a deck
         if (size == 0) {
-            return null;
+            return null;//if there are no cards to draw, return null
         }
-        Card drawnCard = cards[0];
-        for (int i = 1; i < size; i++) {
+        Card drawnCard = cards[0];//saves the first card as drawnCard
+        for (int i = 1; i < size; i++) {//moves every card in the deck one index to the left(move it forward)
             cards[i - 1] = cards[i];
         }
-        size--;
-        cards[size] = null;
-        return drawnCard;
+        size--;//decrease size of array by 1 
+        cards[size] = null;// make last index of array null as is not in use.
+        return drawnCard;//returns the card the player has picked up.
     }
-    public synchronized int getSize() {
+    public synchronized int getSize() {//method that returns the number of cards in the deck
         return size;
     }
-    public synchronized String getContent() {
-        String content = " ";
-        for (int i = 0; i < size; i++) {
+    public synchronized String getContent() {//method that returns the cards in the deck
+        String content = " ";//created an empty string to add to
+        for (int i = 0; i < size; i++) {//loop through the indexes that have cards in and add it to the string
             content += cards[i].getValue();
-            content += " ";
+            content += " ";// add a space in between cards
             
         }
-        return content;
+        return content;//return the string with the deck in. 
 
     }
         
