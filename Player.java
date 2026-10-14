@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Player { //variables for player
+public class Player implements Runnable { //variables for player
     private int playerNum;
     private List<Card> hand = new ArrayList<>(); //araylist to store hand
     private boolean hasWon = false;
@@ -18,6 +18,7 @@ public class Player { //variables for player
         }
         return count == 4; //evaluates if the count is 4, if it is then it means we have a winning hand as all the cards have to have been the same and if not it will return false
     }
+
 }
 
 
