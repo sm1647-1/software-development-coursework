@@ -20,6 +20,18 @@ public class CardDeck {
         cards[size] = card;//places the new card after the last one before it
         size++; //increasing the deck size by 1 so that a new card can be added
     }
+    public synchronized Card drawingCard() {
+        if (size == 0) {
+            return null;
+        }
+        Card drawnCard = cards[0];
+        for (int i = 1; i < size; i++) {
+            cards[i - 1] = cards[i];
+        }
+        size--;
+        cards[size] = null;
+        return drawnCard;
+    }
     
 
 }
