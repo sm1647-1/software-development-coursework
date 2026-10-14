@@ -32,6 +32,21 @@ public class CardDeck {
         cards[size] = null;
         return drawnCard;
     }
+    public synchronized int getSize() {
+        return size;
+    }
+    public synchronized String getContent() {
+        String content = " ";
+        for (int i = 0; i < size; i++) {
+            content += cards[i].getValue();
+            content += " ";
+            
+        }
+        return content;
+
+    }
+        
+    
     
 
 }
