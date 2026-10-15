@@ -3,7 +3,9 @@ import java.util.List;
 public class CardGame {
     private boolean isfinished = false;
     private int playercount; 
-    public String gamestate;
+    public static class GameState{
+
+    }
 
 
     private void AskforPlayercount(){ //method for asking how many players are playing
@@ -29,7 +31,7 @@ public class CardGame {
         return decks; //return the empty list 
     }
 
-    private static List<Player> createPlayers(int n, List<CardDeck> decks, String gamestate){ //method for creating players based on the playercount
+    private static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate){ //method for creating players based on the playercount
         List<Player> players = new ArrayList<>(); 
         for (int i = 1; i <= n; i++) {
   
