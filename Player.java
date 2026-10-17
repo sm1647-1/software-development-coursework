@@ -1,8 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
-
-
+import java.io.IOException;
+import java.io.BufferedWriter;
 
 public class Player implements Runnable { //variables for player
     private int playerNum;
@@ -12,7 +12,7 @@ public class Player implements Runnable { //variables for player
     private CardGame.GameState gameState; //to access the shared gamespace nested class that is created in CardGame
     private final Random random = new Random();
 
-    public  void player(int playerNum, CardDeck left, CardDeck Right, boolean hasWon, CardGame.GameState gamestate) {
+    public void player(int playerNum, CardDeck left, CardDeck Right, boolean hasWon, CardGame.GameState gamestate) {
         this.playerNum = playerNum;
         this.left = left;
         this.right = right;
@@ -60,7 +60,15 @@ public class Player implements Runnable { //variables for player
         }
     }
 
-    
+
+    public void playTurn() { //method for playing a turn, a card will be drawn and then added to the hand then a card will be picked from the hand to be discarded
+        Card x = left.drawingCard(); //will draw a card from the deck on the left
+        hand.add(x); //will add this card to the hand
+        discard(); //will then run the discard method which will discard a random card (following the sorting algorithm) and move it othe right pile 
+        hasWinningHand();  //and before the end of the turn it will check if the hand is a winning hand
+    }  //the locking for this has not been sorted yet will come back and implement locking so the threads dont interfere with eachother when playing turn
+
+
 
 
 
@@ -73,13 +81,14 @@ public class Player implements Runnable { //variables for player
                 count++;
             }
         }
+        gameState.setWinner(playerNum); //sets the winner id in the gamestate class to the current player who just wons id
         return count == 4; //evaluates if the count is 4, if it is then it means we have a winning hand as all the cards have to have been the same and if not it will return false
     }
 
 
     @Override 
     public void run() {
-
+        String filename = "player" + playerNum + "_output.txt";
     }
 
 }

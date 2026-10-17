@@ -4,7 +4,14 @@ public class CardGame {
     private boolean isfinished = false;
     private int playercount; 
     public static class GameState{
+        private int winnerID;
+        public synchronized void declareWinner(int winnerID) {
+            System.out.println("the winner is" +  winnerID);
+        }
 
+        public synchronized void setWinner(int playerNum) {
+            this.winnerID = playerNum;
+        }
     }
 
 
