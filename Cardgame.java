@@ -1,16 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 public class CardGame {
     private boolean isfinished = false;
     private int playercount; 
     public static class GameState{
-        private int winnerID;
-        public synchronized void declareWinner(int winnerID) {
-            System.out.println("the winner is" +  winnerID);
+        private final AtomicInteger winnerId = new AtomicInteger(0);
+        public boolean isOver = false;
+        public void declareWinner() {
+            System.out.println("the winner is player " +  winnerId);
         }
 
-        public synchronized void setWinner(int playerNum) {
-            this.winnerID = playerNum;
+        public void setWinner(int id) {
+            winnerId.compareAndSet(0, id);
+            isOver = true;
+        }
+
+        public int getWinnerId() {
+            int x = winnerId.get();
+            return x;
         }
     }
 

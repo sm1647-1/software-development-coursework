@@ -2,6 +2,15 @@ public class CardDeck {
 
     private final Card[] cards; // array that stores the card objects
     private int size; //variable that holds the number of cards in the deck
+    private int deckId; //variable to store the deckId to identify each deck
+
+    public void setDeckId(int id) {
+        this.deckId = id;
+    }
+
+    public int getDeckId() {
+        return deckId;
+    }
 
     public CardDeck(int capacity) {//constructor
         if (capacity <= 0) {//checking that the capacity of the deck is valid
