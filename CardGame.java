@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class CardGame {
     private boolean isFinished = false;
-    private static final int playercount; 
+    private static int playercount; 
     public static class GameState {
         private final AtomicInteger winnerId = new AtomicInteger(0);
         public volatile boolean isOver = false;//added volatile 

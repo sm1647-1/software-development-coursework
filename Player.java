@@ -66,23 +66,36 @@ public class Player implements Runnable { //variables for player
 
 
     public void playTurn() throws IOException { //method for playing a turn, a card will be drawn and then added to the hand then a card will be picked from the hand to be discarded, deals with IOexeceptions for when it writes to the file the actions
-        CardDeck first; //local deck variables to be used to determine which deck to lock first
-        CardDeck second;
 
+        if (playerNum == playerCount) { //if it is the last player they will lock the right deck first instead of the left like everyone else to prevent a circular deaclock
+            synchronized(right){
+                synchronized(left) {
+                    Card x = left.drawingCard(); //will draw a card from the deck on the left
+                    drawnCardValue = x.getValue(); //stores the value of the drawn card
+                    hand.add(x); //will add this card to the hand
+                    discard(); //will then run the discard method which will discard a random card (following the sorting algorithm) and move it othe right pile 
+                    hasWinningHand();  //and before the end of the turn it will check if the hand is a winning hand                    
+                }
+            }
+        }
+        else { //otherwise all players will lock the deck to the left first before locking the deck to the right
+            synchronized(left) {
+                synchronized(right) {
+                    Card x = left.drawingCard(); //will draw a card from the deck on the left
+                    drawnCardValue = x.getValue(); //stores the value of the drawn card
+                    hand.add(x); //will add this card to the hand
+                    discard(); //will then run the discard method which will discard a random card (following the sorting algorithm) and move it othe right pile 
+                    hasWinningHand();  //and before the end of the turn it will check if the hand is a winning hand                          
+                }
+            }
 
-        //we will lock the deck with the smaller id first
+        }
 
-        Card x = left.drawingCard(); //will draw a card from the deck on the left
-        drawnCardValue = x.getValue(); //stores the value of the drawn card
-        hand.add(x); //will add this card to the hand
-        discard(); //will then run the discard method which will discard a random card (following the sorting algorithm) and move it othe right pile 
-        hasWinningHand();  //and before the end of the turn it will check if the hand is a winning hand
 
         writeToOutput("player " + playerNum + " draws a " + drawnCardValue + " from deck " + left.getDeckId()); //log the actions in the output file
         writeToOutput("player " + playerNum + " discards a " + discardCardValue + " to deck " + right.getDeckId());
         writeToOutput("player " + playerNum + " current hand " + handString());
-    }  //the locking for this has not been sorted yet will come back and implement locking so the threads dont interfere with eachother when playing turn
-
+    }  
 
 
 
