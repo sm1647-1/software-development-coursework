@@ -10,20 +10,20 @@ import java.nio.file.Path;
 
 
 public class CardGame {
-    private static int playercount; 
-    public static class GameState {
-        private final AtomicInteger winnerId = new AtomicInteger(0);
-        public volatile boolean isOver = false;
-        public void declareWinner() {
+    private static int playercount; //variable to store playercount
+    public static class GameState { //class that represents the gamestate, all threads will be able to acess this to declare and set winners
+        private final AtomicInteger winnerId = new AtomicInteger(0); //atomicinteger to represent winnerId as more than one thread will be accessing and changing it
+        public volatile boolean isOver = false;  //volatile boolean to represent wether the game is over or not
+        public void declareWinner() { //method to declare winner, called as soon as a winning hand is found
             System.out.println("the winner is player " +  winnerId);
         }
 
-        public void setWinner(int id) {
+        public void setWinner(int id) { //method to set the winnerId
         winnerId.compareAndSet(0, id);
             isOver = true;
         }
 
-        public int getWinnerId() {
+        public int getWinnerId() {  //method to get the winnerId so the threads can know which player has won
             int x = winnerId.get();
             return x;
         }
@@ -84,7 +84,7 @@ public class CardGame {
         List<CardDeck> decks = new ArrayList<>(); //creates an arraylist to store the card decks
         for (int i = 1; i <= n; i++) {  //for loop which will add a new deck to the list for each player in the game 
             decks.add(new CardDeck(4 * n));
-            deck.setDeckId(i);
+            decks.get(i - 1).setDeckId(i); //gets the newly created deck and sets its deck id
         }
         return decks; //return the empty list 
     }

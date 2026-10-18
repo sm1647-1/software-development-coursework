@@ -4,7 +4,7 @@ public class CardDeck {
     private int size; //variable that holds the number of cards in the deck
     private int deckId; //variable to store the deckId to identify each deck
 
-    public void setDeckId(int id) {
+    public void setDeckId(int id) { //get and set methods for deckId
         this.deckId = id;
     }
 
