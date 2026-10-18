@@ -24,10 +24,13 @@ public class CardDeck {
     public synchronized void addingCard(Card card) {//method that add a card to a deck, only one thread can use this at a time
         if (size == cards.length) {//checking if the deck is already full
             throw new IllegalStateException("the deck is already full");
-
+        
+        }
+        if (card == null){
+            throw new IllegalStateException("card is invalid");
         }
         cards[size] = card;//places the new card after the last one before it
-        size++; //increasing the deck size by 1 so that a new card can be added
+        size++; //increasing the cards in the deck by 1
     }
     public synchronized Card drawingCard() {//created the method for drawing cards from a deck
         if (size == 0) {
@@ -51,11 +54,10 @@ public class CardDeck {
             content += " ";// add a space in between cards
             
         }
-        return content;//return the string with the deck in. 
+        return content.trim();//return the string with the deck in and takes away the trailing white space at back and front of string 
 
     }
         
-    
-    
+
 
 }
