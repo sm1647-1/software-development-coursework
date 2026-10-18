@@ -76,7 +76,7 @@ public class CardGame {
                     
                 }
 
-        }}}
+        }}
 
     private static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) {
         int nextCard = 0;
@@ -134,7 +134,7 @@ public class CardGame {
             Files.writeString(Path.of(filename), contents);//created the file and added the contents
         }
     }
-
+}
 
 
 
