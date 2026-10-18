@@ -77,7 +77,7 @@ public class CardGame {
 
                 }
 
-        }}}
+        }}
 
     private static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) {
         int nextCard = 0;
@@ -110,7 +110,7 @@ public class CardGame {
         return decks; //return the empty list 
     }
 
-    private static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate) { //method for creating players based on the playercount
+    private static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate, int playercount) { //method for creating players based on the playercount
         List<Player> players = new ArrayList<>(); 
         for (int i = 1; i <= n; i++) {
             CardDeck left = decks.get(i - 1);
@@ -121,7 +121,7 @@ public class CardGame {
             else {
                 right = decks.get(i);
             }
-            Player player = new Player(i, left, right, gamestate);
+            Player player = new Player(i, left, right, gamestate, playercount);
             players.add(player);
         }
         return players;
