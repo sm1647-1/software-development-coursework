@@ -10,11 +10,10 @@ import java.nio.file.Path;
 
 
 public class CardGame {
-    private boolean isFinished = false;
     private static int playercount; 
     public static class GameState {
         private final AtomicInteger winnerId = new AtomicInteger(0);
-        public volatile boolean isOver = false;//added volatile 
+        public volatile boolean isOver = false;
         public void declareWinner() {
             System.out.println("the winner is player " +  winnerId);
         }
@@ -29,14 +28,7 @@ public class CardGame {
             return x;
         }
     }
-    public synchronized void declareWinner() {
-        if (winnerId.get() != 0 && !isFinished) {
-            System.println(winnerId.get() + "is the winner");
-        }
-        isFinished = true;
-    }
-
-
+    
     private void AskforPlayercount(){ //method for asking how many players are playing
         boolean valid = false; //boolean for while loop so it will continue asking for a valid number of players until it gets it
         while(!valid){

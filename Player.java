@@ -112,7 +112,9 @@ public class Player implements Runnable { //variables for player
         //sets the winner id in the gamestate class to the current player who just wons id
         if (count == 4) {
             gameState.setWinner(playerNum);
-            gameState.declareWinner();
+            if(gameState.getWinnerId() == playerNum) { //esnure only the winner will declare the winner to prevent another winner from declaring the same winner
+            gameState.declareWinner();                
+            }
             return true;
         } //evaluates if the count is 4, if it is then it means we have a winning hand as all the cards have to have been the same and if not it will return false
         else {return false;} //if not it is not a winning hand
