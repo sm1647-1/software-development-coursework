@@ -52,6 +52,42 @@ public class CardGame {
         }
     }
 
+    private static List<Card> readingPack(Scanner input, int numberOfPlayers) {
+        int requiredCards = 8 * numberOfPlayers;
+        while (true) {
+            System.out.println(
+                "Enter where the pack file is stored");
+                String filename = input.nextline().trim();
+                List<Card> pack = new ArrayList<>();
+                try (BufferedReader reader = Files.newBufferedReader(Path.of(filename))) {
+                    String line;
+                    while ((line = reader.readline()) != null) {
+                        int value = Integer.parseInt(line.trim());
+                        if (value < 1) {
+                            throw new IllegalArgumentException("Card has to be a positive integer");
+                        }
+                        if (pack.size() == requiredCards) {
+                            throw new IllegalArgumentException("Too many cards");
+                        }
+                        pack.add(new Card(value));
+                    }
+                    if (pack.size() != requiredCards) {
+                        throw new IllegalArgumentException("The pack needs" + requiredCards + "cards");
+                    }
+                    return pack;
+                
+                } catch (IOException e) {
+                    System.out.println("Please check file path again.");
+                    
+                }
+
+
+
+
+
+        }
+    }
+
     private static List<CardDeck> createDecks(int n){ //method for creating decks based on n(playercount)
         List<CardDeck> decks = new ArrayList<>(); //creates an arraylist to store the card decks
         for (int i = 1; i <= n; i++) {  //for loop which will add a new deck to the list for each player in the game 
@@ -78,6 +114,7 @@ public class CardGame {
         return players;
     }
 }
+
 
 
 
