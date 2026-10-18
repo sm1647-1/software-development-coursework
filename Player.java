@@ -14,11 +14,13 @@ public class Player implements Runnable { //variables for player
     private int discardCardValue; //Variables to store the value of the card that was discarded and drawn
     private int drawnCardValue;
     private BufferedWriter writerfr; //variable for the writer
-    public Player(int playerNum, CardDeck left, CardDeck right, CardGame.GameState gameState) {
+    private final int playerCount;
+    public Player(int playerNum, CardDeck left, CardDeck right, CardGame.GameState gameState, int playerCount) {
         this.playerNum = playerNum;
         this.left = left;
         this.right = right;
         this.gameState = gameState;
+        this.playerCount = playerCount;
     }
 
     public void setInitialCards(Card c) { //method to set initial hand for the main game
@@ -64,6 +66,12 @@ public class Player implements Runnable { //variables for player
 
 
     public void playTurn() throws IOException { //method for playing a turn, a card will be drawn and then added to the hand then a card will be picked from the hand to be discarded, deals with IOexeceptions for when it writes to the file the actions
+        CardDeck first; //local deck variables to be used to determine which deck to lock first
+        CardDeck second;
+
+
+        //we will lock the deck with the smaller id first
+
         Card x = left.drawingCard(); //will draw a card from the deck on the left
         drawnCardValue = x.getValue(); //stores the value of the drawn card
         hand.add(x); //will add this card to the hand
