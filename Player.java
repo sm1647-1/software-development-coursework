@@ -71,7 +71,7 @@ public class Player implements Runnable { //variables for player
         hasWinningHand();  //and before the end of the turn it will check if the hand is a winning hand
 
         writeToOutput("player " + playerNum + " draws a " + drawnCardValue + " from deck " + left.getDeckId()); //log the actions in the output file
-        writeToOutput("player " + playerNum + " discards a " + discardCardValue + " from deck " + right.getDeckId());
+        writeToOutput("player " + playerNum + " discards a " + discardCardValue + " to deck " + right.getDeckId());
         writeToOutput("player " + playerNum + " current hand " + handString());
     }  //the locking for this has not been sorted yet will come back and implement locking so the threads dont interfere with eachother when playing turn
 
