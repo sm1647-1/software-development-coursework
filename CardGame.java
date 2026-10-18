@@ -10,28 +10,23 @@ import java.nio.file.Path;
 
 
 public class CardGame {
-    private int playercount; 
+    private static int playercount; 
     public static class GameState {
-        private boolean isFinished = false;
         private final AtomicInteger winnerId = new AtomicInteger(0);
         public volatile boolean isOver = false;//added volatile 
         
-
-        public void setWinner(int id) {
-        winnerId.compareAndSet(0, id);
+        public void setWinner(int id) { //method to set winnerId
+        winnerId.compareAndSet(0, id); //uses compare nand set with the default value of zero to make sure only one player is able to change it and no others can after
             isOver = true;
         }
 
-        public int getWinnerId() {
+        public int getWinnerId() { //method to get winnerID as the other threads will need to know the winning playhers ID
             int x = winnerId.get();
             return x;
         }
     
-        public synchronized void declareWinner() {
-            if (winnerId.get() != 0 && !isFinished) {
-                System.out.println( winnerId.get() + "is the winner");
-        
-        isFinished = true;
+        public void declareWinner() {  //Method that declares the winner
+            System.out.println("the winner is player " +  winnerId);
         }
     }
 
@@ -78,7 +73,7 @@ public class CardGame {
                 
                 } catch (IOException e) {
                     System.out.println("Please check file path again.");
-    @SuppressWarnings("empty-statement")
+
 
                 }
 
