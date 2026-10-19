@@ -30,17 +30,8 @@ public class Player implements Runnable { //variables for player
         this.hand.add(c); //adds the card passed from the game into the hand
     }
 
-    public int getPlayerNum(){ //method to get the player number
-        int x = this.playerNum;
-        return x;
-    }
 
-    public List<Card> getHand() { //method to return the hand of player
-        List<Card> x = this.hand;
-        return x;
-    }
-
-    public String handString(){  //method to write the contents of the hand 
+    private String handString(){  //method to write the contents of the hand 
         String contents = ""; 
         for (int i = 0; i < hand.size(); i++) {
             contents+= Integer.toString(hand.get(i).getValue()); //converts the integer value specified by the card i to a string and adds it to the contents
@@ -50,7 +41,7 @@ public class Player implements Runnable { //variables for player
 
     }
     
-    public void discard(){ //method to discard card and add it to the pile on the right
+    private void discard(){ //method to discard card and add it to the pile on the right
         boolean discardComplete = false; //boolean condition so it will run until it gets a card value that isnt the same as the playernum
         while(!discardComplete) {
             int randint = random.nextInt(0,hand.size()); //creates a random int beteen 0 and the hand size
