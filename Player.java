@@ -13,7 +13,7 @@ public class Player implements Runnable { //variables for player
     private final Random random = new Random();
     private int discardCardValue; //Variables to store the value of the card that was discarded and drawn
     private int drawnCardValue;
-    private BufferedWriter writerfr; //variable for the writer
+    BufferedWriter writerfr; //variable for the writer, package private for tests to access it
     private final int playerCount;
     public Player(int playerNum, CardDeck left, CardDeck right, CardGame.GameState gameState, int playerCount) {
         this.playerNum = playerNum;
