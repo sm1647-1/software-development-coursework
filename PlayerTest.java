@@ -85,6 +85,19 @@ public class PlayerTest {
         assertEquals(0, gameState.getWinnerId()); 
     }
 
+    @Test 
+    public void testInitialHandWin() throws IOException{//testing wether the thread can recognize that the game has won on the initial hand
+        player.setInitialCards(new Card(1));
+        player.setInitialCards(new Card(1));
+        player.setInitialCards(new Card(1));
+        player.setInitialCards(new Card(1));
+
+        player.run();
+        String outputFile = Files.readString(Path.of("player1_output.txt")); //read the output file of player 1
+        assertFalse(outputFile.contains("player 1 draws a 1 from deck 1"));//this will test to see if the player has drawn a card 1(indicating they were able to play a turn instead of winning straight away) from deck 1 (the only possible draw)
+        assertTrue(gameState.isOver);//this will test that the game is over 
+    }
+
     @Test
     public void testHasWinningHandfor3() { //testing if the method correctly identifies a hand of 3 cards though matching is still losing
 
