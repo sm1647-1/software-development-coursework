@@ -8,6 +8,7 @@ public class CardTest {
             Card card = new Card (value);
             assertEquals(value, card.getValue(), "value not stored correctly");
         }
+    }
     @Test
     void valueBelowZero() {
         boolean rej = false;
@@ -16,6 +17,7 @@ public class CardTest {
         } catch (IllegalArgumentException e) {rej = true;
 
         }
-        assertTrue(rej, "Cards below zero are rejected. ");}}
+        assertTrue(rej, "Cards below zero are rejected. ");
+    }
 }
 
