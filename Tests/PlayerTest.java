@@ -1,4 +1,5 @@
-package Tests;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
     @Test
@@ -8,7 +9,7 @@ public class PlayerTest {
         CardDeck right = new CardDeck(10);
         CardGame.GameState gameState = new CardGame.GameState();
 
-        Player player = new player(1, left, right, gammeState, 1); //initializing a player to test
+        Player player = new Player(1, left, right, gameState, 1); //initializing a player to test
 
         player.setInitialCards(new Card(1));
         player.setInitialCards(new Card(2));
@@ -26,7 +27,7 @@ public class PlayerTest {
         CardDeck right = new CardDeck(10);
         CardGame.GameState gameState = new CardGame.GameState();
 
-        Player player = new player(1, left, right, gammeState, 1); //initializing a player to test
+        Player player = new Player(1, left, right, gameState, 1); //initializing a player to test
 
         player.setInitialCards(new Card(1));
         player.setInitialCards(new Card(2));
@@ -34,7 +35,7 @@ public class PlayerTest {
         player.setInitialCards(new Card(4));
         player.setInitialCards(new Card(5));
 
-        asserEquals(4, player.getHand().size()); //the size should stay 4 
+        assertEquals(4, player.getHand().size()); //the size should stay 4 
     }
 
     @Test
@@ -44,7 +45,7 @@ public class PlayerTest {
         CardDeck right = new CardDeck(10);
         CardGame.GameState gameState = new CardGame.GameState();
 
-        Player player = new player(1, left, right, gammeState, 1); //initializing a player to test
+        Player player = new Player(1, left, right, gameState, 1); //initializing a player to test
 
         player.setInitialCards(new Card(2));
         player.setInitialCards(new Card(2));
@@ -52,7 +53,7 @@ public class PlayerTest {
         player.setInitialCards(new Card(2));
 
         assertTrue(player.hasWinningHand());
-        sserEquals(1, gameState.getWinnerId()); //checks that it actually sets player 1 to the winner in the shared gameState space and the method returns true for player 1 winning
+        assertEquals(1, gameState.getWinnerId()); //checks that it actually sets player 1 to the winner in the shared gameState space and the method returns true for player 1 winning
     }
 
     @Test
@@ -62,7 +63,7 @@ public class PlayerTest {
         CardDeck right = new CardDeck(10);
         CardGame.GameState gameState = new CardGame.GameState();
 
-        Player player = new player(1, left, right, gammeState, 1); //initializing a player to test
+        Player player = new Player(1, left, right, gameState, 1); //initializing a player to test
 
         player.setInitialCards(new Card(2));
         player.setInitialCards(new Card(2));
@@ -70,6 +71,6 @@ public class PlayerTest {
         player.setInitialCards(new Card(2));
 
         assertFalse(player.hasWinningHand()); //check wether it returns false since its a losing hand the winnerId in gamestate remains the default value
-        sserEquals(0, gameState.getWinnerId()); 
+        assertEquals(0, gameState.getWinnerId()); 
     }
 }
