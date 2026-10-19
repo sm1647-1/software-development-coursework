@@ -83,7 +83,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
             }
 
-        private static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) {
+        static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) { //method to deal cards round robin style, made package private for testing
             int nextCard = 0;
             for (int roundRobin = 0; roundRobin < 4; roundRobin++) {
                 for (int i = 0; i < players.size(); i++) {
@@ -104,7 +104,7 @@ import java.util.concurrent.atomic.AtomicInteger;
         
     
 
-        private static List<CardDeck> createDecks(int n){ //method for creating decks based on n(playercount)
+        static List<CardDeck> createDecks(int n){ //method for creating decks based on n(playercount), package private for testing
             List<CardDeck> decks = new ArrayList<>(); //creates an arraylist to store the card decks
             for (int i = 1; i <= n; i++) {  //for loop which will add a new deck to the list for each player in the game 
                 CardDeck deck = new CardDeck(4 * n);
@@ -114,7 +114,7 @@ import java.util.concurrent.atomic.AtomicInteger;
             return decks; //return the empty list 
         }
 
-        private static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate) { //method for creating players based on the playercount
+        static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate) { //method for creating players based on the playercount, made package private for testing
             List<Player> players = new ArrayList<>(); 
             for (int i = 1; i <= n; i++) {
                 CardDeck left = decks.get(i - 1);

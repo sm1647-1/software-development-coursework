@@ -1,9 +1,9 @@
 player 1 initial hand 2 3 1 1 
 player 1 draws a 1 from deck 1
-player 1 discards a 2 to deck 2
-player 1 current hand 3 1 1 1 
-player 1 draws a 1 from deck 1
 player 1 discards a 3 to deck 2
+player 1 current hand 2 1 1 1 
+player 1 draws a 1 from deck 1
+player 1 discards a 2 to deck 2
 player 1 current hand 1 1 1 1 
 player 1 wins
 player 1 exits
