@@ -64,17 +64,17 @@ public class CardDeckTest {
     correctDeckId() {//checking if the setter method stores the correct id
         CardDeck deck = new CardDeck(2);
 
-    deck.setDeckId(1);
-    assertSame(1, deck.getDeckId());
-
+        deck.setDeckId(1);
+        assertSame(1, deck.getDeckId());
 
     }
+
     @Test
     void acceptingNullCard() {//testing if the deck will take in null values
         CardDeck deck = new CardDeck(4);
         Card one = new Card(3);
         deck.addingCard(one);
-        Card two = null
+        Card two = null;
 
         try {
             deck.addingCard(two);//trying to add null to the deck
