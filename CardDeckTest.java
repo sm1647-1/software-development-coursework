@@ -51,9 +51,9 @@ public class CardDeckTest {
     }
     @Test 
     void invalidCapacity() {//checking if the deck accepts invalid capacities.
-        for (i = -1; i <= 0; i++) {
+        for (int i = -1; i <= 0; i++) {
             try {
-                new CardDeck(capacity);
+                new CardDeck(i);
                 fail("This is not a valid capacity, should be greater than 0");
             } catch (IllegalArgumentException e) {
             
@@ -61,7 +61,7 @@ public class CardDeckTest {
         }
     }
     @Test
-    correctDeckId() {//checking if the setter method stores the correct id
+    void correctDeckId() {//checking if the setter method stores the correct id
         CardDeck deck = new CardDeck(2);
 
         deck.setDeckId(1);
