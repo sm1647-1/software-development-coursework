@@ -30,6 +30,10 @@ public class Player implements Runnable { //variables for player
         this.hand.add(c); //adds the card passed from the game into the hand
     }
 
+    public List<Card> getHand() { //method to return the hand of player
+        List<Card> x = this.hand;
+        return x;
+    }
 
     private String handString(){  //method to write the contents of the hand 
         String contents = ""; 
