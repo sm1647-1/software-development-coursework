@@ -112,7 +112,7 @@ public class Player implements Runnable { //variables for player
         //sets the winner id in the gamestate class to the current player who just wons id
         if (count == 4) {
             gameState.setWinner(playerNum);
-            if(gameState.getWinnerId() == playerNum) { //esnure only the winner will declare the winner to prevent another winner from declaring the same winner
+            if(gameState.getWinnerId() == playerNum) { //esnure only the winner will declare as the winner and prevent another winner from declaring the same winner
             gameState.declareWinner();                
             }
             return true;

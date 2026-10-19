@@ -134,7 +134,7 @@ import java.util.concurrent.atomic.AtomicInteger;
         private static void writeDeckOutputsOfFile(List<CardDeck> decks) throws IOException {//writing the end of games decks to a file
             for (CardDeck deck : decks) {//loop through all decks
                 String contents = "Deck" + deck.getDeckId() + "Contents, " + deck.getContent().trim();//add content to the file
-                String filename = "Deck" + deck.getDeckId() + "_final_decks_output_file.txt";//creating the filename
+                String filename = "Deck" + deck.getDeckId() + "_output.txt";//creating the filename
 
                 Files.writeString(Path.of(filename), contents);//created the file and added the contents
             }
