@@ -70,18 +70,18 @@ public class CardDeckTest {
 
     }
     @Test
-    void acceptingNullCard() {
+    void acceptingNullCard() {//testing if the deck will take in null values
         CardDeck deck = new CardDeck(4);
         Card one = new Card(3);
         deck.addingCard(one);
         Card two = null
 
         try {
-            deck.addingCard(two);
-            fail("card is rejected as it has no value");
+            deck.addingCard(two);//trying to add null to the deck
+            fail("card is rejected as it has no value");//if its accepted then it fails
         } catch (IllegalStateException e) {}
 
-        assertSame(one, deck.drawingCard());
+        assertSame(one, deck.drawingCard());//check the other card is sitll ok and if the deck size was affected
         assertEquals(0, deck.getSize());
 
 
