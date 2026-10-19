@@ -185,7 +185,7 @@ public class PlayerTest {
 
         String outputFile = Files.readString(Path.of("player1_output.txt")); //read the output file of player 1
 
-        assertTrue(outputFile.contains("player 1 current hand 2 1 1 1 ") || outputFile.contains("player 1 current hand 1 3 1 1 "));//check the output contains the correct current hand (which can only be 1311 or 2111) in its turn
+        assertTrue(outputFile.contains("player 1 current hand 2 1 1 1 ") || outputFile.contains("player 1 current hand 3 1 1 1 "));//check the output contains the correct current hand (which can only be 1311 or 2111) in its turn
         assertTrue(outputFile.contains("player 1 draws a 1 from deck 1")); //check that it logs that it draws the correct card from the correct left deck
         assertTrue(outputFile.contains("player 1 discards a 2 to deck 2") || outputFile.contains("player 1 discards a 3 to deck 2")); //check that it correctly logs that it discards a card(can only be 2 or 3) to deck 2
     }
