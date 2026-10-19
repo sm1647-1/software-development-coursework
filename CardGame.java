@@ -73,11 +73,15 @@ import java.util.concurrent.atomic.AtomicInteger;
                 
                     } catch (IOException e) {
                         System.out.println("Please check file path again.");
+                    
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("this pack is invalid");
+                    }
 
 
                     }
 
-            }}
+            }
 
         private static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) {
             int nextCard = 0;
@@ -166,6 +170,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
         }
     }}   
+
 
 
 
