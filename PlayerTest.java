@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
@@ -16,7 +16,7 @@ public class PlayerTest {
         player.setInitialCards(new Card(3));
         player.setInitialCards(new Card(4));
 
-        asserEquals(4, player.getHand().size());
+        assertEquals(4, player.getHand().size());
 
     }
 
