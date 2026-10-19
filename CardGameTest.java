@@ -22,6 +22,7 @@ public class CardGameTest {
     }
     @Test
     void replacingTheWinner() {//checking if another thread wins after one already has before its announced it doesnt replace it
+        CardGame.GameState state = new CardGame.GameState();
         state.setWinner(1);//setting the winner
         state.setWinner(2); // making another player claim the win
 
@@ -65,4 +66,4 @@ public class CardGameTest {
 
         assertTrue(state.isOver);
     }
-        
+}
