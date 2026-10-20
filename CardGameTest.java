@@ -107,7 +107,6 @@ public class CardGameTest {
         cardGame.dealCards(pack, players, decks); //deals the cards to the decks and players
 
         assertEquals(3, players.get(0).getHand().get(1).getValue()); //this checks that the second element in player 1,s hand is 3, this would verify the round robin style as that means 1 was dealt to 1 then 2 to 2, then for the second card dealt to 1 it would be 3
-
     }
 }
         
