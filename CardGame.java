@@ -47,34 +47,34 @@ import java.util.concurrent.atomic.AtomicInteger;
             }
         }
 
-        private static List<Card> readingPack(Scanner input, int numberOfPlayers) {
+        private static List<Card> readingPack(Scanner input, int numberOfPlayers) {//reading and validating a pack
             int requiredCards = 8 * numberOfPlayers;
-            while (true) {
+            while (true) {//keeps asking until a valid pack is returned
                 System.out.println(
                     "Enter where the pack file is stored");
-                    String filename = input.nextLine().trim();
+                    String filename = input.nextLine().trim();//reads path file and removes white spaces from end
                     List<Card> pack = new ArrayList<>();
-                    try (BufferedReader reader = Files.newBufferedReader(Path.of(filename))) {
+                    try (BufferedReader reader = Files.newBufferedReader(Path.of(filename))) {//opening the file
                         String line;
-                        while ((line = reader.readLine()) != null) {
-                            int value = Integer.parseInt(line.trim());
-                            if (value < 1) {
+                        while ((line = reader.readLine()) != null) {//reads every line until there is one blank 
+                            int value = Integer.parseInt(line.trim());//convert the string into an integer, trims spaces
+                            if (value < 1) {//reject non negative integers
                                 throw new IllegalArgumentException("Card has to be a positive integer");
                             }
-                            if (pack.size() == requiredCards) {
+                            if (pack.size() == requiredCards) {//rejects cards once right number has been reached.
                                 throw new IllegalArgumentException("Too many cards");
                             }
-                            pack.add(new Card(value));
+                            pack.add(new Card(value));//adds card obj to pack
                         }
-                        if (pack.size() != requiredCards) {
+                        if (pack.size() != requiredCards) {//rejects if there are not enough cards
                             throw new IllegalArgumentException("The pack needs" + requiredCards + "cards");
                         }
                         return pack;
                 
-                    } catch (IOException e) {
+                    } catch (IOException e) {//tell user to try again if file wasnt opened or found
                         System.out.println("Please check file path again.");
                     
-                    } catch (IllegalArgumentException e) {
+                    } catch (IllegalArgumentException e) {//if pack has invalid values, user is asked again 
                         System.out.println("this pack is invalid");
                     }
 
@@ -85,13 +85,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
         static void dealCards(List<Card> pack, List<Player> players, List<CardDeck> decks) { //method to deal cards round robin style, made package private for testing
             int nextCard = 0;
-            for (int roundRobin = 0; roundRobin < 4; roundRobin++) {
+            for (int roundRobin = 0; roundRobin < 4; roundRobin++) {//go round four times so players get 4 cards
                 for (int i = 0; i < players.size(); i++) {
-                    players.get(i).setInitialCards(pack.get(nextCard));
-                    nextCard++;
+                    players.get(i).setInitialCards(pack.get(nextCard));//give each player 1 card before starting the next round. 
+                    nextCard++;//move to next card so same obj isnt redealt.
                 }
             }
-            for (int roundRobin = 0; roundRobin < 4; roundRobin++) {
+            for (int roundRobin = 0; roundRobin < 4; roundRobin++) {//does the same but for the decks.
                 for (int i = 0; i < decks.size(); i++) { 
                     decks.get(i).addingCard(pack.get(nextCard));
                     nextCard++;
@@ -116,16 +116,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 
         static List<Player> createPlayers(int n, List<CardDeck> decks, GameState gamestate) { //method for creating players based on the playercount, made package private for testing
             List<Player> players = new ArrayList<>(); 
-            for (int i = 1; i <= n; i++) {
-                CardDeck left = decks.get(i - 1);
+            for (int i = 1; i <= n; i++) {//create a player for each player number
+                CardDeck left = decks.get(i - 1);//player draws from one before them so that index is i - 1
                 CardDeck right;
                 if (i == n) {
-                    right = decks.get(0);
+                    right = decks.get(0);//last player discards into first deck
                 }
                 else {
-                    right = decks.get(i);
+                    right = decks.get(i);//players discard into the next deck in the list
                 }
-                Player player = new Player(i, left, right, gamestate, n);
+                Player player = new Player(i, left, right, gamestate, n);//give the player their number, both decks and the gamestate
                 players.add(player);
             }
             return players;
