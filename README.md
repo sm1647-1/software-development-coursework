@@ -11,6 +11,7 @@ The game will end once a player obtains a 4 cards of the same number, the applic
 Requirements:
 
 This project uses Junit5 for testing.
+I ran this project with atleast java 17, jdk17
 
 
 Project Files
