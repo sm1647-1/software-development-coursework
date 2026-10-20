@@ -19,7 +19,7 @@ public class CardGameTest {
 
     @Test
     void initialStateHasNoWinner() {//testing that a new game starts without a winner
-     
+
         assertEquals(0, state.getWinnerId());//checking there is no winner before the game starts
         assertFalse(state.isOver);//checking that the game isnt over
     }
@@ -39,40 +39,40 @@ public class CardGameTest {
         assertTrue(state.isOver);// making sure the game is still over
     }
     @Test 
-    void  competingThreadsDontChangeWinner() throws InterruptedException{
-        int[] observedWinners = new int[2];
+    void  competingThreadsDontChangeWinner() throws InterruptedException{//checking that two threads claiming they have winners are consistant
+        int[] observedWinners = new int[2];//stores the winners
 
-        Thread one = new Thread(new Runnable() {
+        Thread one = new Thread(new Runnable() {//creating the thread that says 1 is the winner
             @Override
             public void run() {
                 state.setWinner(1);
-                observedWinners[0] = state.getWinnerId();
+                observedWinners[0] = state.getWinnerId();//record the winner seen by the first thread
             }
         });
 
-        Thread two = new Thread(new Runnable() {
+        Thread two = new Thread(new Runnable() {//creating the thread that thinks 2 won
             @Override
             public void run() {
                 state.setWinner(2);
-                observedWinners[1] = state.getWinnerId();
+                observedWinners[1] = state.getWinnerId();//records the winner seen by the second thread
             }
         });
 
-        one.start();
+        one.start();//starting both threads, so their claims can compete
         two.start();
 
-        one.join();
+        one.join();//allows both threads to finish before checking recorded results.
         two.join();
 
-        int finalWinner = state.getWinnerId();
+        int finalWinner = state.getWinnerId();//gets the winner that remains
 
 
-        assertTrue(finalWinner == 1 || finalWinner == 2);
+        assertTrue(finalWinner == 1 || finalWinner == 2);//allows either player to win 
 
-        assertEquals(finalWinner, observedWinners[0]);
+        assertEquals(finalWinner, observedWinners[0]);//checking the threads recorded the same winner as the final result
         assertEquals(finalWinner, observedWinners[1]);
 
-        assertTrue(state.isOver);
+        assertTrue(state.isOver);//checking the game is over
     }
 
     @Test 
@@ -107,6 +107,7 @@ public class CardGameTest {
         cardGame.dealCards(pack, players, decks); //deals the cards to the decks and players
 
         assertEquals(3, players.get(0).getHand().get(1).getValue()); //this checks that the second element in player 1,s hand is 3, this would verify the round robin style as that means 1 was dealt to 1 then 2 to 2, then for the second card dealt to 1 it would be 3
+
     }
 }
         
